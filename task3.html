@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Library</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+header {
+    background-color: #183b32;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+nav {
+    background-color: #28594b;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 12px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd166;
+}
+
+
+.banner {
+    background: linear-gradient(120deg, #315c4c, #72a58a);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.banner h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+
+section {
+    padding: 35px 5%;
+}
+
+section h2 {
+    text-align: center;
+    color: #183b32;
+    margin-bottom: 25px;
+}
+
+
+.search-section {
+    text-align: center;
+}
+
+input, select, button {
+    padding: 11px;
+    margin: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input {
+    width: 230px;
+}
+
+button {
+    background-color: #28594b;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #183b32;
+}
+
+/* Category Grid */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
+}
+
+.category {
+    background-color: white;
+    padding: 22px 10px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px #ddd;
+    transition: transform 0.3s;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+}
+
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 22px;
+}
+
+.book-card {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #ddd;
+    transition: transform 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-6px);
+}
+
+.book-card img {
+    width: 150px;
+    height: 190px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.book-card h3 {
+    color: #28594b;
+    margin-bottom: 8px;
+}
+
+
+.available, .borrowed {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+}
+
+.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.borrowed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 13px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #28594b;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #edf3ef;
+}
+
+.status-available {
+    color: green;
+    font-weight: bold;
+}
+
+.status-borrowed {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.rules-box {
+    max-width: 650px;
+    margin: auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px #ddd;
+}
+
+.rules-box ul {
+    padding-left: 25px;
+}
+
+.rules-box li {
+    margin-bottom: 10px;
+}
+
+
+footer {
+    background-color: #183b32;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+
+@media (max-width: 600px) {
+    nav a {
+        display: inline-block;
+        margin: 6px;
+    }
+
+    .banner h2 {
+        font-size: 25px;
+    }
+
+    input, select, button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+    th, td {
+        padding: 9px;
+        font-size: 13px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <h1>📚 College Library</h1>
+        <p>Your Gateway to Knowledge</p>
+    </header>
+
+    
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#catalog">Book Catalog</a>
+        <a href="#rules">Library Rules</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    
+    <section id="home" class="banner">
+        <h2>Welcome to Our Library</h2>
+        <p>Discover books, explore ideas, and learn something new.</p>
+    </section>
+
+    
+    <section class="search-section">
+        <h2>Find Your Book</h2>
+
+        <input type="text" placeholder="Search books or authors">
+
+        <select>
+            <option value="">All Categories</option>
+            <option>Programming</option>
+            <option>Science</option>
+            <option>Fiction</option>
+            <option>Business</option>
+        </select>
+
+        <select>
+            <option value="">All Availability</option>
+            <option>Available</option>
+            <option>Borrowed</option>
+        </select>
+
+        <button type="button">Search</button>
+    </section>
+
+    
+    <section id="categories">
+        <h2>Book Categories</h2>
+
+        <div class="category-grid">
+            <div class="category">💻 Programming</div>
+            <div class="category">🔬 Science</div>
+            <div class="category">📖 Fiction</div>
+            <div class="category">💼 Business</div>
+            <div class="category">📐 Mathematics</div>
+            <div class="category">🌍 History</div>
+        </div>
+    </section>
+
+    
+    <section id="books">
+        <h2>Featured Books</h2>
+
+        <div class="book-grid">
+
+            <div class="book-card">
+                <img
+                    src="https://placehold.co/180x230/24476b/ffffff?text=Python"
+                    alt="Python programming book cover">
+                <h3>Python Programming</h3>
+                <p>Author: Eric Matthes</p>
+                <p>Category: Programming</p>
+                <span class="available">Available</span>
+            </div>
+
+            <div class="book-card">
+                <img
+                    src="https://placehold.co/180x230/467a63/ffffff?text=Science"
+                    alt="Science book cover">
+                <h3>A Brief History of Time</h3>
+                <p>Author: Stephen Hawking</p>
+                <p>Category: Science</p>
+                <span class="borrowed">Borrowed</span>
+            </div>
+
+            <div class="book-card">
+                <img
+                    src="https://placehold.co/180x230/8a4e63/ffffff?text=Fiction"
+                    alt="Pride and Prejudice book cover">
+                <h3>Pride and Prejudice</h3>
+                <p>Author: Jane Austen</p>
+                <p>Category: Fiction</p>
+                <span class="available">Available</span>
+            </div>
+
+            <div class="book-card">
+                <img
+                    src="https://placehold.co/180x230/a36a32/ffffff?text=Business"
+                    alt="Think and Grow Rich book cover">
+                <h3>Think and Grow Rich</h3>
+                <p>Author: Napoleon Hill</p>
+                <p>Category: Business</p>
+                <span class="available">Available</span>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <section id="catalog">
+        <h2>Library Book Catalog</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>B101</td>
+                        <td>Python Programming</td>
+                        <td>Eric Matthes</td>
+                        <td>Programming</td>
+                        <td class="status-available">Available</td>
+                    </tr>
+
+                    <tr>
+                        <td>B102</td>
+                        <td>A Brief History of Time</td>
+                        <td>Stephen Hawking</td>
+                        <td>Science</td>
+                        <td class="status-borrowed">Borrowed</td>
+                    </tr>
+
+                    <tr>
+                        <td>B103</td>
+                        <td>Pride and Prejudice</td>
+                        <td>Jane Austen</td>
+                        <td>Fiction</td>
+                        <td class="status-available">Available</td>
+                    </tr>
+
+                    <tr>
+                        <td>B104</td>
+                        <td>Think and Grow Rich</td>
+                        <td>Napoleon Hill</td>
+                        <td>Business</td>
+                        <td class="status-available">Available</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    
+    <section id="rules">
+        <h2>Library Rules</h2>
+
+        <div class="rules-box">
+            <ul>
+                <li>Maintain silence inside the library.</li>
+                <li>Carry your valid college ID card.</li>
+                <li>Return borrowed books before the due date.</li>
+                <li>Keep books clean and handle them carefully.</li>
+                <li>Do not eat or drink inside the library.</li>
+                <li>Follow the library borrowing limits.</li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section id="contact">
+        <h2>Contact the Librarian</h2>
+        <p>Email: library@college.edu</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Opening Hours: Monday - Saturday, 9 AM - 5 PM</p>
+    </section>
+
+    
+    <footer>
+        <p> 2026 College Library. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
